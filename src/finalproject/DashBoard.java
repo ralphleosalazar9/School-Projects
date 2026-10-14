@@ -54,11 +54,14 @@ public class DashBoard extends javax.swing.JFrame {
         btnAddTask = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnMarkAsDone = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(26, 43, 60));
 
+        taskDisplay.setBackground(new java.awt.Color(26, 43, 60));
+        taskDisplay.setForeground(new java.awt.Color(255, 255, 255));
         taskDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -70,22 +73,32 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(taskDisplay);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SCHOOL TASKS:");
 
-        btnAddTask.setBackground(new java.awt.Color(51, 153, 255));
+        btnAddTask.setBackground(new java.awt.Color(30, 136, 229));
         btnAddTask.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnAddTask.setForeground(new java.awt.Color(255, 255, 255));
         btnAddTask.setText("Add Task");
         btnAddTask.addActionListener(this::btnAddTaskActionPerformed);
 
-        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
+        btnDelete.setBackground(new java.awt.Color(211, 47, 47));
         btnDelete.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
-        btnMarkAsDone.setBackground(new java.awt.Color(255, 255, 102));
+        btnMarkAsDone.setBackground(new java.awt.Color(46, 125, 50));
         btnMarkAsDone.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnMarkAsDone.setForeground(new java.awt.Color(255, 255, 255));
         btnMarkAsDone.setText("Mark as Done");
         btnMarkAsDone.addActionListener(this::btnMarkAsDoneActionPerformed);
+
+        btnEdit.setBackground(new java.awt.Color(84, 110, 122));
+        btnEdit.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(this::btnEditActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,6 +111,8 @@ public class DashBoard extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddTask)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEdit)
                         .addGap(18, 18, 18)
                         .addComponent(btnMarkAsDone)
                         .addGap(18, 18, 18)
@@ -113,7 +128,8 @@ public class DashBoard extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(btnMarkAsDone)
                     .addComponent(btnDelete)
-                    .addComponent(btnAddTask, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddTask)
+                    .addComponent(btnEdit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -239,6 +255,19 @@ public class DashBoard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnMarkAsDoneActionPerformed
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+
+        int selectedRow = taskDisplay.getSelectedRow();
+        
+        if (selectedRow != -1) {
+            EditTask editTaskFrame = new EditTask();
+            editTaskFrame.setLocationRelativeTo(this);
+            editTaskFrame.setVisible(true);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Select a task to edit");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,6 +296,7 @@ public class DashBoard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddTask;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnMarkAsDone;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

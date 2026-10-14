@@ -59,9 +59,10 @@ public class AddTask extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(35, 57, 91));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Add Task");
 
         txtSubject.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -70,16 +71,20 @@ public class AddTask extends javax.swing.JFrame {
         txtTask.addActionListener(this::txtTaskActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Subject:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Task:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Due Date: ");
 
-        txtSaveTask.setBackground(new java.awt.Color(51, 153, 255));
+        txtSaveTask.setBackground(new java.awt.Color(30, 136, 229));
         txtSaveTask.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtSaveTask.setForeground(new java.awt.Color(255, 255, 255));
         txtSaveTask.setText("ADD");
         txtSaveTask.addActionListener(this::txtSaveTaskActionPerformed);
 
