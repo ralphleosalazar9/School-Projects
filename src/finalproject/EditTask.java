@@ -19,9 +19,16 @@ public class EditTask extends javax.swing.JFrame {
      * Creates new form EditTask
      */
     private DashBoard dashboard;
+    private String oldTask;
+    
+    public EditTask() {
+        initComponents();
+    }
     
     public EditTask(DashBoard dashboard) {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         
         this.dashboard = dashboard;
         
@@ -40,13 +47,11 @@ public class EditTask extends javax.swing.JFrame {
                 txtSubject.setText(model.getValueAt(selectedRow, 0).toString());
                 txtTask.setText(model.getValueAt(selectedRow, 1).toString());
                 txtDueDate.setText(model.getValueAt(selectedRow, 2).toString());
+                
+                this.oldTask = model.getValueAt(selectedRow, 1).toString();
             }
         }
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    }
-    
-    public EditTask() {
-        this(null);
     }
 
     /**
@@ -181,7 +186,55 @@ public class EditTask extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTaskActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)dashboard.taskDisplay.getModel();
+        
+        String newSubject = txtSubject.getText();
+        String newTask = txtTask.getText();
+        String newDueDate = txtDueDate.getText();
+        
+        int rowToEdit = -1;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if (model.getValueAt(i, 1).toString().equals(oldTask)){
+                rowToEdit = i;
+            break;
+            }
+        }
+        
+        if (rowToEdit != -1) {
+            model.setValueAt(newSubject, rowToEdit, 0);
+            model.setValueAt(newTask, rowToEdit, 1);
+            model.setValueAt(newDueDate, rowToEdit, 2);
+        }
+        
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Task.txt", false));
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String subject = model.getValueAt(i, 0).toString();
+                String task = model.getValueAt(i, 1).toString();
+                String date = model.getValueAt(i, 2).toString();
+                String status = model.getValueAt(i, 3).toString();
+
+               writer.write(subject + "," + task + "," + date + "," + status);
+               writer.newLine();
+            }
+            writer.close();
+            
+            javax.swing.JOptionPane pane = new javax.swing.JOptionPane("Task edit successfuly",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE,
+            javax.swing.JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);
+            
+            javax.swing.JDialog dialog = pane.createDialog(this, "Edit Task");
+            
+            javax.swing.Timer timer = new javax.swing.Timer(1000, tEvt -> dialog.dispose());
+            timer.setRepeats(false);
+            timer.start();
+            
+            dialog.setVisible(true);
+            this.dispose();
+            
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error");
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtDueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDueDateActionPerformed

@@ -18,6 +18,8 @@ public class DashBoard extends javax.swing.JFrame {
      */
     public DashBoard() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         
         File file = new File("Task.txt");
         
@@ -260,7 +262,7 @@ public class DashBoard extends javax.swing.JFrame {
         int selectedRow = taskDisplay.getSelectedRow();
         
         if (selectedRow != -1) {
-            EditTask editTaskFrame = new EditTask();
+            EditTask editTaskFrame = new EditTask(this);
             editTaskFrame.setLocationRelativeTo(this);
             editTaskFrame.setVisible(true);
         } else {

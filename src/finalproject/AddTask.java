@@ -20,6 +20,8 @@ public class AddTask extends javax.swing.JFrame {
     
     public AddTask(DashBoard dashboard) {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         
         this.dashboard = dashboard;
         
